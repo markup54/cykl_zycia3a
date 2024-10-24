@@ -18,8 +18,12 @@ int liczba;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.i("CYKL ŻYCIA","uruchomiona metoda onCreate");
+        if(savedInstanceState != null){
+            liczba = savedInstanceState.getInt("WYLOSOWANA",0);
+        }
         button = findViewById(R.id.button);
         textView = findViewById(R.id.textViewLiczba);
+        textView.setText(String.valueOf(liczba));
         button.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -72,5 +76,6 @@ int liczba;
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         Log.i("CYKL ŻYCIA","wykonana metoda onSaveInstanceState");
+        outState.putInt("WYLOSOWANA",liczba);
     }
 }
